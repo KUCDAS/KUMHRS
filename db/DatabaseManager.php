@@ -113,12 +113,7 @@ class DatabaseManager {
     }
 
     public function getPatientPresc($rid){
-        $sql = "SELECT DISTINCT medicine_name, dosage, quantity, tpd, tpu, note
-        FROM MedicineDetail as MD
-        JOIN PrescriptionMedicine as PM ON MD.mid = PM.mid
-        JOIN Prescription as P ON P.prescription_id = PM.prescription_id
-        JOIN Appointment as A ON A.aid = P.aid
-        WHERE A.patient_id = ?";
+        $sql = "SELECT A.aid AS aid,medicine_name, dosage, quantity, tpd, tpu, note FROM MedicineDetail as MD JOIN PrescriptionMedicine as PM ON MD.mid = PM.mid JOIN Prescription as P ON P.prescription_id = PM.prescription_id JOIN Appointment as A ON A.aid = P.aid JOIN Patient as Pa ON Pa.patient_id = A.patient_id JOIN Person as Pe ON Pe.rid = Pa.rid WHERE Pe.rid = ? ORDER BY A.aid ASC";
         $stmt = $this->conn->prepare($sql);
 
         $stmt->bind_param('s', $rid); // 's' indicates the type is a string
@@ -206,10 +201,99 @@ class DatabaseManager {
                 array_push($results, $row);
             }
 
-        } 
+        }
         
     return $results;
     }
+
+    public function getIssuedPrescription($rid){
+        $sql = "SELECT A.aid AS aid, Pe.name AS pname, Md.medicine_name AS medicinaNames, A.adate AS date FROM Prescription Pr , PrescriptionMedicine Pm , MedicineDetail Md, Appointment A,Patient Pa, Person Pe, Person Pdoc , Doctor Do WHERE Pr.prescription_id = Pm.prescription_id AND Pm.mid = Md.mid AND Pr.aid = A.aid AND A.patient_id = Pa.patient_id AND Pa.rid = Pe.rid AND A.doctor_id = Do.doctor_id AND Pdoc.rid = Do.rid AND Pdoc.rid = ? ORDER BY A.aid";
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bind_param('s', $rid); // 's' indicates the type is a string
+
+        // Execute the query
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                array_push($results, $row);
+            }
+
+        } 
+        
+        return $results;
+    }
+
+    public function getPrescriptionInfo($aid){
+        $sql = "SELECT A.adate AS adate,Md.medicine_name AS medicine_name, Md.dosage AS dosage, Md.quantity AS quantity, Md.tpd AS tpd, Md.tpu AS tpu, Md.note AS note 
+        FROM PrescriptionMedicine Pm , MedicineDetail Md, Appointment A, Prescription Pr
+        WHERE Pm.mid = Md.mid AND Pr.prescription_id = Pm.prescription_id AND Pr.aid = A.aid AND A.aid = ? ORDER BY Pm.mid";
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bind_param('s', $aid); // 's' indicates the type is a string
+
+        // Execute the query
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                array_push($results, $row);
+            }
+
+        } 
+        
+        return $results;
+    }
+
+    public function getPatientAndDoctorInfo($aid){
+        $sql = "SELECT Pe.name AS pname, Pdoc.name AS dname FROM Prescription Pr , Appointment A,Patient Pa, Person Pe, Person Pdoc , Doctor Do WHERE Pr.aid = A.aid AND A.patient_id = Pa.patient_id AND Pa.rid = Pe.rid AND A.doctor_id = Do.doctor_id AND Pdoc.rid = Do.rid AND Pr.aid = ?";
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bind_param('s', $aid); // 's' indicates the type is a string
+
+        // Execute the query
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                array_push($results, $row);
+            }
+
+        } 
+        
+        return $results;
+    }
+
+    public function getPrescriptionID($aid){
+        $sql = "SELECT Pr.prescription_id AS id FROM Prescription Pr WHERE Pr.aid = ?";
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bind_param('s', $aid); // 's' indicates the type is a string
+
+        // Execute the query
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                array_push($results, $row);
+            }
+
+        } 
+        
+        return $results;        
+    }
+
 }
 
 

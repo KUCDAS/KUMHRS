@@ -1,24 +1,3 @@
-<?php
-// target.php
-
-// Check if the form was submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if the name and email fields are set
-    if (isset($_POST['id'])) {
-        $id = $_POST['id'];
-    } else {
-        header("Location: invalid_request.php");
-        exit;
-    }
-    $dname = 'Walter White';
-    $pname = "Jessey Pinkman";
-} else {
-    // Not a POST request, handle differently or redirect
-    header("Location: invalid_request.php");
-    exit;
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +6,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Prescription Visualization</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <?php
+        session_start();
+        require 'db/DatabaseManager.php';
+        $dbManager = new DatabaseManager();
+        $result = $dbManager->getPatientAndDoctorInfo($_POST['presc_id']);
+        $dname = $result[0]['dname'];
+        $pname = $_SESSION['name'];
+        $id = $dbManager->getPrescriptionID($_POST['presc_id'])[0]['id'];
+                ?>
+
 </head>
 <body>
     <div class="container mt-5 col-md-4">
@@ -38,9 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p class="card-text"><strong>Patient Name:</strong> <?=$pname?></p>
                 <hr>
                 <?php
-                    session_start();
-                    $res = $_SESSION['presc'];
-                    foreach($res as $row){
+                    $result = $dbManager->getPrescriptionInfo($_POST['presc_id']);
+                    $date = $result[0]['adate'];
+                    foreach($result as $row){
                         $mname = $row['medicine_name'];
                         $dosage = $row['dosage'];
                         $quantity = $row['quantity'];
@@ -57,9 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                         echo "<hr>";
                     }
-
+                    echo "<p class='card-text'><strong>Given Time:</strong> $date</p>";
                 ?>
-                <p class="card-text"><strong>Given Time:</strong> 2023-05-13</p>
             </div>
         </div>
     </div>
@@ -68,3 +56,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
