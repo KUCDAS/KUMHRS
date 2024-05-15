@@ -133,7 +133,7 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right" style=" padding: 16px;">
-                            <a href="appointment.php" class="btn btn-info">
+                            <a href="AppointmentPages/appointment.php" class="btn btn-info">
                                 <h4>Randevu Al</h4>
                             </a>
 

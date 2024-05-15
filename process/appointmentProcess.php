@@ -1,21 +1,12 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['city'])){
-        echo $_POST['city'];
-        echo $_POST['clinic'];
-        echo $_POST['hospital'];
-        echo $_POST['doctor'];
-        echo $_POST['appointment_time'];
+session_start();
+if(isset($_GET['time'])){
 
-        header("Location: ../success_pages/appointmentSuccess.php");
-
-    }
-    else{
-        echo "notset";
-    }
-}
-else{
-    echo "noreq";
+    echo $_SESSION['clinic'];
+    echo $_SESSION['hospital'];
+    echo $_SESSION['doctor'];
+    echo $_GET['time'];
+    echo $_SESSION['rid'];
 }
 ?>
 

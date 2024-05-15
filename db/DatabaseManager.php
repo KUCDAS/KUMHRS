@@ -88,10 +88,10 @@ class DatabaseManager {
 
         if($result){
             return true;
-            $stmt->close;
+            $stmt->close();
         }else{
             return false;
-            $stmt->close;
+            $stmt->close();
         }
     }
 
@@ -138,6 +138,7 @@ class DatabaseManager {
         return $results;
     }
 
+    //Functions for appointment below
     public function getAllClinics(){
         $sql = "SELECT DISTINCT dname FROM Department";
         $stmt = $this->conn->prepare($sql);
@@ -151,12 +152,97 @@ class DatabaseManager {
         }
         return $results;
     }
+
+    public function getHospitals($clinic_name){
+        $sql = "SELECT DISTINCT H.hname
+        FROM Hospital H
+        JOIN Department D ON H.hospital_id = D.hospital_id
+        JOIN Doctor Dr ON D.department_id = Dr.department_id
+        WHERE D.dname = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('s', $clinic_name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if($result -> num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                array_push($results, $row);
+            }
+        }
+        return $results;
+    }
+
+    public function getDoctors($clinic, $hospital){
+        $sql = "SELECT DISTINCT name
+        FROM Person as P
+        JOIN Doctor as Dr ON P.rid = Dr.rid
+        JOIN Department as Dep ON Dr.department_id = Dep.department_id
+        JOIN Hospital as H ON H.hospital_id = Dep.hospital_id
+        WHERE Dep.dname = ? AND H.hname = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ss', $clinic, $hospital);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if($result -> num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                array_push($results, $row);
+            }
+        }
+        return $results;
+    }
+
+    public function getNonavaliableAppointmentTimes($clinic, $hospital, $doctor){
+        $sql = "SELECT A.atime as time
+        FROM Appointment A
+        JOIN Doctor D ON A.doctor_id = D.doctor_id
+        JOIN Person P ON D.rid = P.rid
+        JOIN Department Dept ON D.department_id = Dept.department_id
+        JOIN Hospital H ON Dept.hospital_id = H.hospital_id
+        WHERE P.name = ? AND Dept.dname = ? AND H.hname = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('sss', $doctor, $clinic, $hospital);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if($result -> num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                array_push($results, $row);
+            }
+        }
+        return $results;
+    }
+
+    public function makeAppointment($clinic, $hospital, $doctor, $time,$pid){
+        
+        $sql = "INSERT INTO Appointment (aid, patient_id, doctor_id, adate, status, atime)
+        SELECT MAX(aid) + 1, 1, 2, '2024-05-03', 'Scheduled', '08:30:00'
+        FROM Appointment";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('sss', $doctor, $clinic, $hospital);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if($result -> num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                array_push($results, $row);
+            }
+        }
+        return $results;
+    }
+    //Functions for Appointment Above
     
     public function getAppointments($rid){
-        $sql = "SELECT H.haddress as address,D.dname as dname,H.hname as hname, P.name as pname, A.adate as date, A.atime as time FROM 
-                Person as P, Appointment as A, Doctor as Do, Department as D, Hospital as H
-                WHERE P.rid = ? AND A.doctor_id = Do.doctor_id AND Do.department_id = D.department_id AND D.hospital_id = H.hospital_id
-                AND P.rid = A.patient_id ORDER BY date ASC"; 
+        $sql = "SELECT H.haddress as address,D.dname as dname,H.hname as hname, P.name as pname, A.adate as date, A.atime as time 
+        FROM  Person as P, Patient as Pa, Appointment as A, Doctor as Do, Department as D, Hospital as H
+        WHERE 
+            Pa.rid = ? 
+        AND A.doctor_id = Do.doctor_id 
+        AND Do.department_id = D.department_id 
+        AND D.hospital_id = H.hospital_id
+        AND Do.rid = P.rid
+        AND A.patient_id = Pa.patient_id 
+        ORDER BY date ASC"; 
     
             $stmt = $this->conn->prepare($sql);
             if (!$stmt){
@@ -180,6 +266,43 @@ class DatabaseManager {
             } 
             
         return $results;
+    }
+
+    public function getDoctorAppointments($rid){
+        $sql = "SELECT D.dname as dname, H.hname as hname, P.name as pname, A.adate as date, A.atime as time 
+        FROM  Person as P, Patient as Pa, Appointment as A, Doctor as Do, Department as D, Hospital as H
+        WHERE 
+            Do.rid = ?
+        AND A.doctor_id = Do.doctor_id 
+        AND Do.department_id = D.department_id 
+        AND D.hospital_id = H.hospital_id
+        AND Pa.rid = P.rid
+        AND A.patient_id = Pa.patient_id 
+        ORDER BY date ASC"; 
+
+
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt){
+            die('Prepare failed'.$this->conn->error);
+        }
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bind_param('s', $rid); // 's' indicates the type is a string
+
+        // Execute the query
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                array_push($results, $row);
+            }
+
+        } 
+        
+    return $results;
     }
 
     
