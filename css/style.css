@@ -1,0 +1,1972 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body a {
+    font-family: "montserrat" !important;
+    text-decoration: none !important;
+}
+
+h1 {
+    font-family: "montserrat" !important;
+}
+
+h2 {
+    font-family: "montserrat" !important;
+}
+
+h3 {
+    font-family: "montserrat" !important;
+    margin-block-start: 0px !important;
+}
+
+h4 {
+    font-family: "montserrat" !important;
+}
+
+h5 {
+    font-family: "montserrat" !important;
+}
+
+h6 {
+    font-family: "montserrat" !important;
+}
+
+p {
+    font-family: "montserrat";
+}
+
+button:focus {
+    outline: none;
+}
+
+select:focus {
+    outline: none;
+}
+
+.header {
+    max-height: 90px !important;
+    background-color: #fff;
+}
+
+img.sbLogoAlg {
+    width: 100px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.mhrsLogo > a > img {
+    margin-left: 35px;
+    margin-top: 25px;
+}
+
+.containerBg {
+    background-color: #f8f8f8;
+    height: 1700px;
+    width: 100%;
+}
+
+.headerLeft {
+    padding: 21px;
+}
+
+.headerRight {
+    padding: 20px;
+}
+
+.connectIcon {
+    width: 20px;
+    margin-left: 30px;
+}
+
+.iconText {
+    margin-left: 10px !important;
+}
+
+.homeIcon {
+    width: 42px;
+    height: auto;
+}
+
+.homeIcon:hover {
+    background-color: #daf5f3;
+    width: 42px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.mainContainer {
+    margin-top: 50px;
+    background-color: #fff;
+    height: 1300px;
+    width: 100%;
+    padding: 95px;
+}
+
+.hakkimizdaTitle {
+    margin-top: 50px;
+    text-align: center;
+    font-weight: 300;
+}
+
+.titleRed {
+    color: #d40d12;
+}
+
+.titleBlack {
+    color: #000000;
+    font-weight: bold;
+}
+
+.sbLogo {
+    width: 100px;
+    padding: 6px;
+}
+
+.logo {
+    text-align: center;
+}
+
+.logo > img {
+    width: 220px;
+}
+
+.topLeft {
+    background-color: white;
+    height: 700px;
+}
+
+.topRight {
+    background-color: blueviolet;
+    height: 700px;
+}
+
+.mhrsLogin {
+    padding: 0 75px;
+    margin-top: 25px;
+}
+
+.socialMedia {
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.09);
+    height: 100px;
+    z-index: 1;
+    position: relative;
+}
+
+.girisButton {
+    height: 45px;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: #47b6b0 solid 1px;
+    color: #47b6b0;
+    background: #fff;
+}
+
+.girisButton:active {
+    background-color: #76a9a6 !important;
+    color: #fff !important;
+}
+
+.girisButton:focus {
+    background-color: #76a9a6 !important;
+    color: #fff !important;
+}
+
+.uyeolButton:hover {
+    background-color: #259089 !important;
+}
+
+.e-devlet-giris {
+    width: 100%;
+    display: flex;
+    margin-top: 10px;
+    height: 45px;
+}
+
+.e-logo {
+    background: #c10c14;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.e-logo > img {
+    width: 33px;
+    height: auto;
+    margin: 10px;
+}
+
+.e-text {
+    font-size: 14px;
+    width: 100%;
+    background-color: rgb(219, 14, 22);
+    color: #fff;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    text-align: center;
+}
+
+.e-text:hover {
+    background: #c10c14;
+}
+
+.e-text > a {
+    text-decoration: none;
+    color: #fff;
+    line-height: 3.2;
+}
+
+div#myCarousel {
+    height: 700px !important;
+    overflow: hidden;
+}
+
+.siksorularText {
+    margin-left: 15px !important;
+}
+
+.arrowLeft {
+    width: 30px !important;
+    margin-right: 75px !important;
+}
+
+.arrowRight {
+    width: 30px !important;
+    /*margin-left: 75px!important;*/
+}
+
+a.left.carousel-control {
+    height: 700px;
+}
+
+a.right.carousel-control {
+    height: 700px;
+}
+
+.carousel-control {
+    opacity: 0.4;
+}
+
+li.s-shadow {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.slider-filter:after {
+    content: "\A";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0.6;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+}
+
+.carousel-caption {
+    text-align: justify;
+    left: 10%;
+    text-shadow: none;
+    top: 360px;
+    bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: 300px;
+    width: 75%;
+}
+
+.carousel-control:focus, .carousel-control:hover {
+    opacity: 0.5;
+}
+
+.carousel-caption > a > h3 {
+    font-size: 43px;
+    color: #fff;
+}
+
+.carousel-caption > a > p {
+    font-size: 17px;
+    color: #fff;
+}
+
+.carousel-caption > a > h3:hover {
+    opacity: 0.8;
+}
+
+.carousel-caption > a > p:hover {
+    opacity: 0.8;
+}
+
+.form-group {
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+a.left.carousel-control {
+    line-height: 40 !important;
+}
+
+a.right.carousel-control {
+    line-height: 40 !important;
+}
+
+.duyuruHiza {
+    margin-left: 20px;
+}
+
+.duyuru {
+    background-color: #f2fafa;
+    /*height: 390px;*/
+    padding-bottom: 65px;
+}
+
+.duyuruText {
+    color: #47b6b0;
+    margin-left: 15px;
+    margin-top: 55px;
+}
+
+.duyuruButton {
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+    border: none;
+    background-color: #dff3f3;
+    border-radius: 5px;
+    color: #35a29d;
+    overflow: hidden;
+    /* taşacak kısımları gizle. */
+    white-space: nowrap;
+    /* alt satırı gösterme, alt satıra inme. */
+    text-overflow: ellipsis;
+    /* uzunsa sonuna üç nokta koy. */
+    text-align: left;
+    padding: 0px 25px;
+    font-size: 15px;
+}
+
+.duyuruButton:hover {
+    background-color: #d2ecec;
+}
+
+.duyuruContainer {
+    max-width: 1350px;
+    margin: auto;
+    position: relative;
+    padding-top: 60px;
+}
+
+.yararliBaglantilarButton {
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+    border: none;
+    border-color: rgba(0, 0, 0, .8) transparent;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    color: #35a29d;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+    padding: 0px 25px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.item > img {
+    width: 100%;
+    min-width: 1200px;
+    min-height: 700px;
+}
+
+.timeIcon {
+    margin-bottom: 60px !important;
+}
+
+.mhrsHizalama {
+    text-align: center;
+}
+
+.mhrsUygulamatext {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.mhrsHizalama > img {
+    width: 130px;
+}
+
+.mhrsHizalama > a {
+    width: 130px;
+}
+
+.mhrsHizalama > p {
+    font-size: 12px;
+}
+
+.mhrsHizalama   img {
+    width: 130px;
+}
+.e-nabizText {
+    padding: 98px 50px;
+}
+
+.e-nabizText > h3 {
+    font-weight: 700;
+    color: #0d3aa9;
+}
+
+.e-nabizButton {
+    margin-top: 5px;
+    width: 160px;
+    height: 50px;
+    background-color: #0d3aa9;
+    border-radius: 35px;
+    border: none;
+}
+
+.e-nabizButton:hover {
+    background-color: #092f8e;
+}
+
+.readButton {
+    margin-top: 5px;
+    width: 160px;
+    height: 50px;
+    background-color: #0d3aa9;
+    border-radius: 35px;
+    border: none;
+    color: #FFFFFF;
+}
+
+.readModal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 16px;
+    padding-bottom: 16px;
+}
+
+.video {
+    background-color: #f2fafa;
+    /*height: 450px;*/
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.videoright {
+    width: 100%;
+    height: 144px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-top: 140px;
+}
+
+
+.haritaButton {
+    height: 46px;
+    width: 120px;
+    border-radius: 5px;
+    background-color: #c10c14;
+    border: none;
+    color: #ffffff;
+    z-index: 1;
+}
+
+.haritaButton > img {
+    width: 25px;
+    margin-bottom: 4px;
+}
+
+.haritaButton > h4 {
+    display: inline-block;
+    font-size: 16px;
+    margin-block-start: 0px;
+}
+
+
+
+.sliderenabizButton {
+    height: 46px;
+    width: 120px;
+    border-radius: 5px;
+    background-color: #0d3aa9;
+    border: none;
+    color: #ffffff;
+    z-index: 1;
+}
+
+.sliderenabizButton > img {
+    width: 90px;
+}
+
+.sliderenabizButton:hover {
+    background-color: #051e5a;
+}
+
+.sliderNeyimVarButton {
+    height: 46px;
+    width: 120px;
+    border-radius: 5px;
+    background-color: #27aae1;
+    border: none;
+    color: #ffffff;
+    z-index: 1;
+}
+
+.sliderNeyimVarButton > img {
+    width: 90px;
+}
+
+.sliderNeyimVarButton:hover {
+    background-color: #1a8bbb;
+}
+
+button#dropdownMenu1 {
+    width: 100%;
+    height: 45px;
+}
+
+.dropdown {
+    text-align: center !important;
+}
+
+ul.dropdown-menu {
+    width: 100%;
+}
+
+select.translate {
+    padding-left: 5px;
+}
+
+.trHarita {
+    width: 100%;
+    height: 240px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.trHarita > img {
+    width: 60%;
+    height: auto;
+}
+
+.kurum {
+    margin: auto;
+    width: 100%;
+    height: 450px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 35px;
+}
+
+.kurumHeader {
+    padding: 10px 25px;
+    border-bottom: #fff solid 1px;
+}
+
+.hastaneTable {
+    padding: 7px 28px;
+}
+
+.hastaneTable:hover {
+    display: block;
+}
+
+.hastaneButton {
+    width: 100%;
+    text-align: left;
+    border: none;
+    background-color: #fff;
+    color: black;
+    height: auto;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.hastaneButton:hover {
+    background-color: #b5b5b5;
+    color: #fff;
+}
+
+.hastaneButton:active {
+
+    background-color: #47b6b0;
+    color: #fff;
+}
+
+.hastaneButton:focus {
+
+    background-color: #47b6b0;
+    color: #fff;
+}
+
+.translate {
+    height: 45px;
+    width: 100%;
+    margin-top: 10px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+.translate {
+    height: 45px;
+    width: 100%;
+    margin-top: 10px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+.ilSecimSelect {
+    height: 45px;
+    width: 100%;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    padding: 10px 5px 10px 5px;
+}
+
+.kurumBody {
+    max-height: 400px;
+    overflow: overlay;
+}
+
+.randevuAlButton {
+    width: 100%;
+    height: 50px;
+    color: #fff;
+    background-color: #c41212;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.randevuAlButton:hover {
+    background-color: #a00c0c;
+
+}
+
+/*
+*  STYLE 10
+*/
+
+
+::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+    border-radius: 12px;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #AAA;
+    border-radius: 10px;
+    background-image: -webkit-linear-gradient(90deg, rgba(0, 0, 0, .2) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, .2) 50%, rgba(0, 0, 0, .2) 75%, transparent 75%, transparent)
+}
+
+.girisButton:hover {
+    background-color: #47b6b0;
+    color: #fff;
+}
+
+.girisButton {
+    border: #47b6b0 solid 1px;
+    background: #fff;
+    color: #47b6b0;
+    height: 45px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: .6s;
+
+}
+
+button#myBtn {
+    position: fixed !important;
+    right: 15px !important;
+    bottom: 15px !important;
+    background: none;
+    border: none;
+    opacity: 0.9;
+}
+
+#myBtn > img {
+    width: 50px;
+}
+
+.randevualButton {
+    width: 100%;
+    height: 45px;
+    background-color: #47b6b0 !important;
+    border: none;
+}
+
+.randevualButton:hover {
+    background-color: #259089 !important;
+}
+
+.socialMedia > a:hover {
+    opacity: 0.7;
+}
+
+.socialMedia > p:hover {
+    opacity: 0.7;
+}
+
+.source {
+    text-align: center;
+}
+
+.footerAlo {
+    max-width: 300px;
+    float: right;
+}
+
+.mobilIcon > img {
+    width: 20px;
+}
+
+.mobilIcon > a {
+    display: inline-block;
+    margin-left: 8px;
+    color: #47b6b0;
+}
+
+.appleIcon {
+    width: 19px;
+    margin-left: 10px;
+    margin-top: -6px;
+}
+
+.appButton {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.appButton > a > img {
+    width: 150px;
+}
+
+.appStore {
+    margin-left: 10px;
+}
+
+.form-control {
+    height: 45px;
+    margin-top: 15px;
+}
+
+.uyeolButton {
+    height: 45px;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #47b6b0;
+    border: none;
+    color: #FFFFFF;
+}
+
+.enYakinHastaneButton {
+
+    width: 100%;
+    border-radius: 5px;
+    background-color: #47b6b0;
+    border: none;
+    color: #FFFFFF;
+    padding: 10px 35px;
+    font-weight: 700;
+}
+
+.parolaUnuttum {
+    font-size: 12px;
+    color: #6A6A6A;
+}
+
+.parolaUnuttum > p {
+    padding-top: 10px;
+}
+
+.carousel {
+    height: 700px;
+    width: 100%;
+}
+
+.carousel-caption > h3 {
+    text-align: left;
+}
+
+.item > img {
+    width: 100%;
+}
+
+.socialMedia {
+    padding: 35px;
+}
+
+.instagram > img {
+    color: #bc57f0;
+    width: 30px;
+}
+
+.instagram > p {
+    display: inline-block;
+    font-size: 18px;
+    color: #bc57f0;
+
+}
+
+.facebook > img {
+    color: #0080e5;
+    width: 30px;
+
+}
+
+.facebook > p {
+    display: inline-block;
+    font-size: 18px;
+    color: #0080e5;
+}
+
+.twitter > img {
+    color: #78c0fd;
+    margin-left: 25px;
+    width: 30px;
+
+}
+
+.twitter > p {
+    display: inline-block;
+    margin-left: 7px;
+    font-size: 18px;
+    color: #78c0fd;
+}
+
+.aydinlatmaMetni > h5 {
+    margin-left: 5px;
+    font-weight: 600;
+    float: right;
+}
+
+.info {
+    margin-top: 4px;
+    margin-left: 8px;
+    width: 22px;
+    float: right;
+}
+
+.mhrsUygulmasi {
+    height: 340px;
+    background-color: #fff;
+    max-width: 70%;
+    margin: auto;
+    vertical-align: center;
+    margin-top: 110px
+}
+
+.e-nabiz {
+    margin-top: 50px;
+    /*height: 390px;*/
+    box-shadow: 0px 2px 26.19px 0.81px rgba(0, 116, 208, 0.07);
+}
+
+.e-nabizButton > img {
+    width: 100px;
+}
+
+.e-nabizImg {
+    width: 100%;
+    min-height: 390px;
+    max-height: 350px;
+    max-width: 950px;
+}
+
+.videoright > img {
+    width: 150px
+}
+
+.videoright > h4 {
+    display: inline-block;
+    padding: 30px;
+    color: #d40d12;
+}
+
+.footerRed {
+    background: #d40d12;
+    height: 100px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.footerRed > p {
+    padding-top: 43px;
+    font-weight: 500;
+    color: black;
+}
+
+.footer {
+    background: #282828;
+    height: 200px;
+    font-size: 12px;
+    padding: 40px 60px;
+}
+
+.footerText {
+    float: left;
+}
+
+.source > img {
+    width: 120px;
+}
+
+.footerAlo {
+    max-width: 300px;
+    float: right;
+}
+
+.alo171 > img {
+    width: 130px;
+    float: right;
+}
+
+.alo150 > img {
+    width: 50px;
+    margin-right: 13px;
+    float: right;
+}
+
+.alo113 > img {
+    width: 130px;
+    float: right;
+    margin-top: 10px;
+}
+
+.alo184 > img {
+    width: 50px;
+    margin-right: 13px;
+    float: right;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #a00c0c !important;
+    border-color: none !important;
+}
+
+.btn-primary.focus, .btn-primary:focus {
+    color: #fff;
+    background-color: #a00c0c !important;
+    border-color: none !important;
+}
+
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open > .dropdown-toggle.btn-primary.focus, .open > .dropdown-toggle.btn-primary:focus, .open > .dropdown-toggle.btn-primary:hover {
+    color: #fff;
+    background-color: #a00c0c !important;
+    border-color: none !important;
+}
+
+.kurumAyrintiBilgileri {
+    width: 100%;
+    text-align: left;
+    border: none;
+    background-color: #fff;
+    color: black;
+    border-radius: 5px;
+    padding: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+
+
+}
+
+.kurumAyrintiBaslik {
+    width: 100%;
+    border-bottom: 1px solid #848484;
+    margin-top: 10px;
+    box-shadow: 0 1px 0 #78c0fd;
+}
+
+
+.navbar-toggle {
+    right: 0px;
+    position: absolute;
+    top: 30px;
+}
+
+
+
+.navbar-collapse {
+    background: white;
+    margin-top: -21px;
+}
+
+.navbar-default {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+nav.navbar.navbar-default.navbar-fixed-top {
+    height: 94px;
+}
+
+.headerRandevual {
+    height: 46px;
+    width: 120px;
+    border-radius: 5px;
+    background-color: #33b9b2;
+    border: none;
+    color: rgb(255, 255, 255);
+    z-index: 1;
+    margin-right: 10px;
+    font-weight: 600;
+    visibility: visible;
+}
+
+.headerRandevual:hover {
+    background-color: #269c96;
+}
+
+.topRandevual {
+    height: 30px;
+    width: 120px;
+    border-radius: 5px;
+    background-color: #33b9b2;
+    border: none;
+    color: rgb(255, 255, 255);
+    z-index: 1;
+    margin-right: 0;
+    font-weight: 600;
+    margin-left: 5%;
+    margin-bottom: 10%;
+    visibility: hidden;
+    padding: 5px;
+}
+
+.sliderenabizButton {
+    height: 46px;
+    width: 120px;
+    border-radius: 5px;
+    background-color: rgb(13, 58, 169);
+    border: none;
+    color: rgb(255, 255, 255);
+    z-index: 1;
+    margin-right: 10px;
+}
+.sliderNeyimVarButton {
+    height: 46px;
+    width: 120px;
+    border-radius: 5px;
+    background-color: rgb(39, 170, 225);
+    border: none;
+    color: rgb(255, 255, 255);
+    z-index: 1;
+    margin-right: 10px;
+}
+
+.haritaButton {
+    height: 46px;
+    width: 120px;
+    border-radius: 5px;
+    background-color: #c10c14;
+    border: none;
+    color: #ffffff;
+    /* right: 195px; */
+    z-index: 1;
+    margin-right: 10px;
+}
+
+.solMesafe {
+    width: 11%;
+    float: left;
+    text-align: center;
+}
+
+.socialMediaItems {
+    padding: 26px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.aydinlatmaMetni {
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.headerNavbar {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 736px) and (orientation: portrait) {
+
+    .headerNavbar {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .aydinlatmaMetni {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .socialItem {
+        flex: 1;
+    }
+
+    .sbLogo {
+        width: 100px;
+        padding: 10px;
+    }
+
+    .social {
+        flex: 1;
+    }
+
+    .facebook > img {
+        width: 32px;
+
+    }
+
+    .twitter > img {
+        width: 32px;
+
+
+    }
+
+    .solMesafe {
+        width: 20%;
+        float: left;
+        text-align: center;
+    }
+
+    .headerRandevual {
+        height: 0px;
+        width: 120px;
+        border-radius: 5px;
+        background-color: #33b9b2;
+        border: none;
+        color: rgb(255, 255, 255);
+        z-index: 1;
+        margin-right: 0;
+        font-weight: 600;
+        margin-left: 25%;
+        visibility: hidden;
+    }
+
+    .topRandevual {
+        height: 46px;
+        width: 100px;
+        border-radius: 5px;
+        background-color: #33b9b2;
+        border: none;
+        color: rgb(255, 255, 255);
+        z-index: 1;
+        font-weight: 600;
+        margin-left: 5%;
+        margin-right: 10%;
+        margin-bottom: 5%;
+        visibility: visible;
+        margin-top: 30%;
+        padding: inherit;
+    }
+
+    .haritaButton {
+        height: 46px;
+        width: 120px;
+        border-radius: 5px;
+        background-color: #c10c14;
+        border: none;
+        color: #ffffff;
+        /* right: 195px; */
+        z-index: 1;
+        margin-right: 0;
+        margin-left: 25%;
+        margin-top: 0px;
+    }
+
+    .sliderenabizButton {
+        height: 46px;
+        width: 120px;
+        border-radius: 5px;
+        background-color: rgb(13, 58, 169);
+        border: none;
+        color: rgb(255, 255, 255);
+        z-index: 1;
+        margin-right: 0;
+        margin-left: 25%;
+        margin-top: 20px;
+    }
+    .sliderNeyimVarButton {
+        height: 46px;
+        width: 120px;
+        border-radius: 5px;
+        background-color: rgb(39, 170, 225);
+        border: none;
+        color: rgb(255, 255, 255);
+        z-index: 1;
+        margin-right: 0;
+        margin-left: 25%;
+        margin-top: 20px;
+    }
+
+    .videoright > h4 {
+        display: inline-block;
+        padding: 0;
+        color: #d40d12;
+    }
+
+    #myCarousel {
+        display: block;
+    }
+
+    .appButton {
+        margin-bottom: 50px;
+    }
+
+    .socialMedia {
+        height: 90px;
+    }
+
+
+    .duyuru {
+        height: 700px !important;
+    }
+
+    .mhrsUygulmasi {
+        height: 800px !important;
+    }
+
+    .e-nabizImg {
+        display: none !important;
+    }
+
+    .e-nabizText {
+        text-align: center;
+    }
+
+    .videoright {
+        margin-top: 50px !important;
+    }
+
+    .footer {
+        height: 420px !important;
+    }
+
+    .source {
+        width: 100% !important;
+    }
+
+    .source > img {
+        margin-top: 20px !important;
+    }
+
+    .footerText {
+        width: 100% !important;
+        text-align: center;
+    }
+
+    .footerAlo {
+        float: none !important;
+        text-align: center;
+        max-width: 300px !important;
+        margin-top: 40px;
+        margin-left: 15px
+    }
+
+    .appButton {
+        display: none !important;
+    }
+
+    .haritaButton {
+        /*
+            position: relative!important;
+            right: 0px!important;
+            height: 100px!important;
+            display: none;*/
+    }
+
+    .haritaButtonDisplay {
+        width: 100%;
+        height: 50px;
+        background-color: transparent;
+        border: #ccc solid 1px;
+        margin-bottom: 35px;
+    }
+
+    .haritaButtonDisplay:hover {
+        background-color: #ccc !important;
+        background: #ccc !important;
+    }
+
+
+    .haritaButtonDisplay > img {
+        width: 25px;
+        margin-top: -7px;
+    }
+
+    .haritaButtonDisplay > h4 {
+        font-size: 14px;
+        color: #767676;
+        display: inline-block;
+        font-weight: 600;
+    }
+
+    .trHarita {
+        display: none;
+    }
+
+    .kurum {
+        margin-top: 20px !important;
+    }
+
+    .WharitaButtonDisplay {
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        border: #ccc solid 1px;
+        background: #fff;
+        margin-bottom: 45px;
+    }
+
+    .WharitaButtonDisplay:hover {
+        background: #ededed;
+    }
+
+    .WharitaButtonDisplay > img {
+        width: 30px;
+        padding-top: 5px;
+    }
+
+    .WharitaButtonDisplay > h4 {
+        display: inline-block;
+        vertical-align: -webkit-baseline-middle;
+        font-size: 16px;
+        font-weight: 600;
+        color: #8e8e8e;
+        padding-left: 2px;
+    }
+}
+
+@media screen and (max-width: 736px) and (orientation: landscape) {
+
+    .headerNavbar {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .aydinlatmaMetni {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .socialItem {
+        flex: 1;
+    }
+
+    .sbLogo {
+        width: 100px;
+        padding: 10px;
+    }
+
+    .social {
+        flex: 1;
+    }
+
+    .facebook > img {
+        width: 32px;
+
+    }
+
+    .twitter > img {
+        width: 32px;
+
+
+    }
+
+    .solMesafe {
+        width: 20%;
+        float: left;
+        text-align: center;
+    }
+
+    .headerRandevual {
+        height: 0px;
+        width: 0px;
+        border-radius: 5px;
+        background-color: #33b9b2;
+        border: none;
+        color: rgb(255, 255, 255);
+        z-index: 1;
+        margin-right: 0;
+        font-weight: 600;
+        margin-left: 0px;
+        visibility: hidden;
+    }
+
+    .topRandevual {
+        height: 46px;
+        width: 100px;
+        border-radius: 5px;
+        background-color: #33b9b2;
+        border: none;
+        color: rgb(255, 255, 255);
+        z-index: 1;
+        font-weight: 600;
+        margin-left: 5%;
+        margin-right: 10%;
+        margin-bottom: 5%;
+        margin-top: 30%;
+        padding: inherit;
+        visibility: visible;
+    }
+
+    .haritaButton {
+        height: 46px;
+        width: 120px;
+        border-radius: 5px;
+        background-color: #c10c14;
+        border: none;
+        color: #ffffff;
+        /* right: 195px; */
+        z-index: 1;
+        margin-right: 0;
+        margin-left: 35%;
+        margin-top: 0px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .sliderenabizButton {
+        height: 46px;
+        width: 120px;
+        border-radius: 5px;
+        background-color: rgb(13, 58, 169);
+        border: none;
+        color: rgb(255, 255, 255);
+        z-index: 1;
+        margin-right: 0;
+        margin-left: 35%;
+        margin-top: 20px;
+    }
+    .sliderNeyimVarButton {
+        height: 46px;
+        width: 120px;
+        border-radius: 5px;
+        background-color: rgb(39, 170, 225);
+        border: none;
+        color: rgb(255, 255, 255);
+        z-index: 1;
+        margin-right: 0;
+        margin-left: 35%;
+        margin-top: 20px;
+    }
+    .videoright > h4 {
+        display: inline-block;
+        padding: 0;
+        color: #d40d12;
+    }
+
+    #myCarousel {
+        display: block;
+    }
+
+    .appButton {
+        margin-bottom: 50px;
+    }
+
+    .socialMedia {
+        height: 90px;
+    }
+
+
+    .duyuru {
+        height: 700px !important;
+    }
+
+    .mhrsUygulmasi {
+        height: 800px !important;
+    }
+
+    .e-nabizImg {
+        display: none !important;
+    }
+
+    .e-nabizText {
+        text-align: center;
+    }
+
+    .videoright {
+        margin-top: 50px !important;
+    }
+
+    .footer {
+        height: 420px !important;
+    }
+
+    .source {
+        width: 100% !important;
+    }
+
+    .source > img {
+        margin-top: 20px !important;
+    }
+
+    .footerText {
+        width: 100% !important;
+        text-align: center;
+    }
+
+    .footerAlo {
+        float: none !important;
+        text-align: center;
+        max-width: 300px !important;
+        margin-top: 40px;
+        margin-left: 15px
+    }
+
+    .appButton {
+        display: none !important;
+    }
+
+    .haritaButton {
+        /*
+            position: relative!important;
+            right: 0px!important;
+            height: 100px!important;
+            display: none;*/
+    }
+
+    .haritaButtonDisplay {
+        width: 100%;
+        height: 50px;
+        background-color: transparent;
+        border: #ccc solid 1px;
+        margin-bottom: 35px;
+    }
+
+    .haritaButtonDisplay:hover {
+        background-color: #ccc !important;
+        background: #ccc !important;
+    }
+
+
+    .haritaButtonDisplay > img {
+        width: 25px;
+        margin-top: -7px;
+    }
+
+    .haritaButtonDisplay > h4 {
+        font-size: 14px;
+        color: #767676;
+        display: inline-block;
+        font-weight: 600;
+    }
+
+    .trHarita {
+        display: none;
+    }
+
+    .kurum {
+        margin-top: 20px !important;
+    }
+
+    .WharitaButtonDisplay {
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        border: #ccc solid 1px;
+        background: #fff;
+        margin-bottom: 45px;
+    }
+
+    .WharitaButtonDisplay:hover {
+        background: #ededed;
+    }
+
+    .WharitaButtonDisplay > img {
+        width: 30px;
+        padding-top: 5px;
+    }
+
+    .WharitaButtonDisplay > h4 {
+        display: inline-block;
+        vertical-align: -webkit-baseline-middle;
+        font-size: 16px;
+        font-weight: 600;
+        color: #8e8e8e;
+        padding-left: 2px;
+    }
+}
+
+.footerLogoLeft {
+    width: 50%;
+    float: left;
+}
+
+.footerLogoRight {
+    width: 40%;
+    margin-left: 10%;
+    float: left;
+}
+
+.kurumAyrintiPanel {
+    padding: 10px 15px !important;
+    transition: all 0.5s ease;
+    color: #333 !important;
+}
+
+.kurumAyrintiPanel > .panel-title > a {
+    color: #333 !important;
+    font-weight: 400;
+    letter-spacing: 0px;
+}
+
+.kurumAyrintiPanelMesafe {
+    padding: 10px 15px !important;
+    transition: all 0.5s ease;
+    background: none !important;
+}
+
+.kurumAyrintiPanel:hover {
+    background-color: #dff0ef !important;
+}
+
+.kurumAyrintiPanel > .panel-title > a, .kurumAyrintiPanel > .panel-title > a:active {
+    padding: 0px !important;
+    font-weight: 400 !important;
+    word-spacing: 0px !important;
+    letter-spacing: 0px !important;
+
+}
+
+
+.kurumAyrintiPanel:hover ~ .kurumPanel > .solMesafe {
+    background-color: #dff0ef !important;
+}
+
+
+.mobilRandevuAlButton {
+    text-align: center;
+    background-color: #33b9b2;
+    color: white;
+    font-weight: 600;
+    font-family: inherit;
+    display: none;
+}
+
+@media screen and (max-width: 1199px) and (orientation: portrait) {
+    .mhrsLogin {
+        padding: 0px 40px !important;
+    }
+
+    .carousel-caption > a > h3 {
+        font-size: 30px !important;
+    }
+
+    .carousel-caption > a > p {
+        font-size: 12px !important;
+    }
+
+    .carousel-caption {
+        top: 200px !important;
+    }
+
+    .mainContainer {
+        padding: 0;
+    }
+
+    .footerLogoRight {
+        width: 40%;
+        margin-left: 0;
+        float: left;
+    }
+
+    .footerMenuText {
+        text-align: center;
+    }
+
+    .topLeftLogo {
+        margin-left: 10px;
+    }
+
+    .mhrsLogo > a > img {
+        width: 20vw;
+        margin-left: 5vw;
+        margin-top: 5vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        visibility: visible;
+
+    }
+
+    .mhrsYatayLogo > a > img {
+        visibility: hidden;
+
+    }
+}
+
+@media screen and (max-width: 1199px) and (orientation: landscape) {
+    .mhrsLogin {
+        padding: 0px 40px !important;
+    }
+
+    .carousel-caption > a > h3 {
+        font-size: 30px !important;
+    }
+
+    .carousel-caption > a > p {
+        font-size: 12px !important;
+    }
+
+    .carousel-caption {
+        top: 200px !important;
+    }
+
+    .mainContainer {
+        padding: 0;
+    }
+
+    .footerLogoRight {
+        width: 40%;
+        margin-left: 0;
+        float: left;
+    }
+
+    .footerMenuText {
+        text-align: center;
+    }
+
+    .topLeftLogo {
+        margin-left: 10px;
+    }
+
+    .mhrsLogo > a > img {
+        width: 0vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        visibility: hidden;
+
+    }
+
+    .mhrsYatayLogo > a > img {
+        width: 160px;
+        height: 52px;
+        margin-left: 25px;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        visibility: visible;
+
+    }
+}
+
+@media (min-width: 719px) {
+
+    .mhrsLogo > a > img {
+        height: 0px;
+        width: 0px;
+        visibility: hidden;
+    }
+
+    .mhrsYatayLogo > a > img {
+        width: 160px;
+        height: 52px;
+        margin-left: 25px;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        visibility: visible;
+    }
+}
+
+@media (min-width: 768px) {
+    .modal-dialog {
+        width: 900px;
+    }
+
+    .WharitaButtonDisplay {
+        display: none;
+    }
+
+
+}
+
+@media (max-width: 281px) {
+    .mhrsLogo > a > img {
+        width: 40vw;
+        margin-left: 0;
+        margin-top: 10vw;
+    }
+}
+
+.alert {
+    margin-top: 10px;
+    padding: 20px;
+    color: #000;
+    background-color: #e6f7ff !important;
+    border: 1px solid #91d5ff !important;
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: #398439;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+td {
+    text-align: left;
+    height: 20px;
+    color: black;
+    margin-left: auto;
+    border-color: black;
+    padding: 10px;
+}
+
+ #RandevuSayisiGecmisi{
+     position: absolute;
+     z-index: +1;
+     border-color: black;
+     border: 1px solid #ddd;
+     right: 30%;
+     left: 35%;
+     width: 30%;
+     height: 30%;
+
+}
+
+@media (min-width: 1300px) {
+
+    tr,td {
+        text-align: right;
+        visibility: visible;
+        color: white;
+        padding: 5px;
+        padding-left:15px;
+    }
+
+    #RandevuSayisiGecmisi{
+        border: 0px solid black;
+        visibility: visible;
+        height:35%;
+        width: 35%;
+        top: 600px;
+        overflow-x: auto;
+        border-spacing: 0;
+        padding-top: 50px;
+        padding-right: 30px;
+        padding-bottom: 100px;
+        padding-left: 30px;
+    }
+
+    .randevuSayiImg {
+        background-image:url('/img/portal.png');
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        visibility: visible;
+    }
+}
+@media (min-width: 1900px) {
+
+    tr,td {
+        text-align: right;
+        visibility: visible;
+        color: white;
+        padding: 5px;
+        padding-left:15px;
+    }
+
+    #RandevuSayisiGecmisi{
+        border: 0px solid black;
+        visibility: visible;
+        height:35%;
+        width: 35%;
+        top: 600px;
+        overflow-x: auto;
+        border-spacing: 0;
+        padding-top: 50px;
+        padding-right: 30px;
+        padding-bottom: 100px;
+        padding-left: 30px;
+    }
+
+    .randevuSayiImg {
+        background-image:url('/img/portal.png');
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        visibility: visible;
+    }
+}
+@media (max-width: 1299px) {
+
+    tr,td {
+        text-align: right;
+        visibility: hidden;
+        color: white;
+        padding: 5px;
+        padding-left:15px;
+    }
+
+    #RandevuSayisiGecmisi{
+        border: 0px solid black;
+        visibility: hidden;
+        height:35%;
+        width: 35%;
+        top: 600px;
+        overflow-x: auto;
+        border-spacing: 0;
+        padding-top: 50px;
+        padding-right: 30px;
+        padding-bottom: 100px;
+        padding-left: 30px;
+    }
+
+    .randevuSayiImg {
+        background-image:url('/img/portal.png');
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        visibility: hidden;
+    }
+}
