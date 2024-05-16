@@ -7,6 +7,12 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <?php
+$button_url = "../main.php";
+$button_name = "Go Home";
+$button_visibility = "hidden";
+include "../partials/_p_header.php";
+?>
+<?php
 include "../db/DatabaseManager.php";
 $dbManager = new DatabaseManager();
 session_start();
@@ -21,7 +27,7 @@ $doctors = $dbManager->getDoctors($_SESSION['clinic'], $hospital);
 <body>
 <div class="container mt-5">
     <h2>Select a Doctor</h2>
-    <form action="time.php" method = "GET">
+    <form action="date.php" method = "GET">
         <div class="form-group">
 
             <?php include "../partials/Appointment/_doctor.php"; ?>

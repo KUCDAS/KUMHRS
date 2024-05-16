@@ -192,8 +192,8 @@ class DatabaseManager {
         return $results;
     }
 
-    public function getNonavaliableAppointmentTimes($clinic, $hospital, $doctor){
-        $sql = "SELECT A.atime as time
+    public function getAvaliableAppointmentDates($clinic, $hospital, $doctor){
+        $sql = "SELECT A.adate as date
         FROM Appointment A
         JOIN Doctor D ON A.doctor_id = D.doctor_id
         JOIN Person P ON D.rid = P.rid
@@ -213,13 +213,16 @@ class DatabaseManager {
         return $results;
     }
 
-    public function makeAppointment($clinic, $hospital, $doctor, $time,$pid){
-        
-        $sql = "INSERT INTO Appointment (aid, patient_id, doctor_id, adate, status, atime)
-        SELECT MAX(aid) + 1, 1, 2, '2024-05-03', 'Scheduled', '08:30:00'
-        FROM Appointment";
+    public function getNonavailableAppoitmentTimes($clinic, $hospital, $doctor, $date){
+        $sql = "SELECT A.atime as time
+        FROM Appointment A
+        JOIN Doctor D ON A.doctor_id = D.doctor_id
+        JOIN Person P ON D.rid = P.rid
+        JOIN Department Dept ON D.department_id = Dept.department_id
+        JOIN Hospital H ON Dept.hospital_id = H.hospital_id
+        WHERE P.name = ? AND Dept.dname = ? AND H.hname = ? AND A.adate = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('sss', $doctor, $clinic, $hospital);
+        $stmt->bind_param('ssss', $doctor, $clinic, $hospital, $date);
         $stmt->execute();
         $result = $stmt->get_result();
         $results = [];
@@ -230,19 +233,52 @@ class DatabaseManager {
         }
         return $results;
     }
+
+    public function makeAppointment($pid, $date, $time, $doctor){
+        // Prepare SQL with proper explicit JOINs and corrected logic
+        $sql = "INSERT INTO Appointment (aid, patient_id, doctor_id, adate, status, atime)
+        SELECT MAX(A.aid) + 1, ?, D.doctor_id, ?, 'Scheduled', ?
+        FROM Appointment A, Doctor D
+        JOIN Person P ON D.rid = P.rid
+        WHERE P.name = ?";
+    
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            // Handle possible preparation errors
+            echo "Error preparing statement: " . $this->conn->error;
+            return false;
+        }
+    
+        $stmt->bind_param('isss', $pid, $date, $time, $doctor); // Assuming $pid is an integer
+        if (!$stmt->execute()) {
+            // Handle executing errors
+            echo "Execution error: " . $stmt->error;
+            return false;
+        }
+    
+        // Since it's an INSERT statement, no need to fetch rows, just return success or the number of affected rows
+        return $stmt->affected_rows;
+    }
+    
     //Functions for Appointment Above
     
     public function getAppointments($rid){
-        $sql = "SELECT H.haddress as address,D.dname as dname,H.hname as hname, P.name as pname, A.adate as date, A.atime as time 
-        FROM  Person as P, Patient as Pa, Appointment as A, Doctor as Do, Department as D, Hospital as H
+        $sql = "SELECT 
+            H.haddress AS address,
+            D.dname AS dname,
+            H.hname AS hname,
+            P.name AS pname,
+            A.adate AS date,
+            A.atime AS time
+        FROM 
+            Appointment A
+            JOIN Doctor Dr ON A.doctor_id = Dr.doctor_id
+            JOIN Person P ON Dr.rid = P.rid
+            JOIN Department D ON Dr.department_id = D.department_id
+            JOIN Hospital H ON D.hospital_id = H.hospital_id
         WHERE 
-            Pa.rid = ? 
-        AND A.doctor_id = Do.doctor_id 
-        AND Do.department_id = D.department_id 
-        AND D.hospital_id = H.hospital_id
-        AND Do.rid = P.rid
-        AND A.patient_id = Pa.patient_id 
-        ORDER BY date ASC"; 
+            A.patient_id = ?
+        ORDER BY date ASC, time ASC"; 
     
             $stmt = $this->conn->prepare($sql);
             if (!$stmt){

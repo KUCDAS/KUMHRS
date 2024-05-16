@@ -16,35 +16,25 @@ include "../partials/_p_header.php";
 include "../db/DatabaseManager.php";
 $dbManager = new DatabaseManager();
 session_start();
-if(isset($_GET['date'])){
-    $date = $_GET['date'];
-    $_SESSION['date'] = $date;
-}else if(isset($_SESSION['date'])){
-    $date = $_SESSION['date'];
+if(isset($_GET['doctor'])){
+    $doctor = $_GET['doctor'];
+    $_SESSION['doctor'] = $doctor;
+}else if(isset($_SESSION['doctor'])){
+    $doctor = $_SESSION['doctor'];
 }
-$dateString = $date;
-$date = DateTime::createFromFormat("l d-M-Y", $dateString);
-
-// Check if the date was parsed correctly
-if ($date === false) {
-    echo "Failed to parse date.";
-} else {
-    // Format the DateTime object to 'Y-m-d'
-    $formattedDate = $date->format("Y-m-d");
-}
-$times = $dbManager->getNonavailableAppoitmentTimes($_SESSION['clinic'], $_SESSION['hospital'], $_SESSION['doctor'], $formattedDate);
+$dates = $dbManager->getAvaliableAppointmentDates($_SESSION['clinic'], $_SESSION['hospital'], $doctor);
 
 ?>
 <body>
 <div class="container mt-5">
     <h2>Select a Date</h2>
-    <form action="../process/appointmentProcess.php" method = "GET">
+    <form action="time.php" method = "GET">
         <div class="form-group">
 
-            <?php include "../partials/Appointment/_time.php"; ?>
+            <?php include "../partials/Appointment/_date.php"; ?>
         </div>
         <div class="btn-group">
-            <a href = "date.php" class="btn btn-secondary">Back</a>
+            <a href = "doctor.php" class="btn btn-secondary">Back</a>
             <button type="submit" class="btn btn-primary">Forward</button>
         </div>
         <a href="../main.php" class="btn btn-success">Go Home</a>

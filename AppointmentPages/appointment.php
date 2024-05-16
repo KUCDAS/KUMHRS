@@ -7,6 +7,12 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <?php
+$button_url = "../main.php";
+$button_name = "Go Back";
+$button_visibility = "hidden";
+include "../partials/_p_header.php";
+?>
+<?php
 include "../db/DatabaseManager.php";
 $dbManager = new DatabaseManager();
 $clinics = $dbManager->getAllClinics();
