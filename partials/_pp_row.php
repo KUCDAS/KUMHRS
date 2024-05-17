@@ -1,12 +1,9 @@
 <?php
+session_start();
 require 'db/DatabaseManager.php';
 $dbManager = new DatabaseManager();
-session_start();
 $res = $dbManager->getPatientPresc($_SESSION['rid']);
 
-foreach($res as $row){
-    echo $row['medicine_name'];
-}
 $_SESSION['presc'] = $res;
 
 ?>
@@ -16,24 +13,36 @@ $_SESSION['presc'] = $res;
 <html lang="en">
     <tbody id="prescriptonData">
     <?php
-        $i = 0;
-        foreach($res as $row){
-            $mname = $row['medicine_name'];
-            $dosage = $row['dosage'];
-            $quantity = $row['quantity'];
-            $tpd = $row['tpd'];
-            $tpu = $row['tpu'];
-            $note = $row['note'];
-            $date = $row['adate'];
-            $i++;
-            echo "<tr>"; 
-            echo "<td>$i</td>";
-            echo "<td>Walter White</td>"; //Doctor Name
-            echo "<td>$mname</td>"; //Medicine Name
-            echo "<td>20.04.2024</td>"; //Given time
-            echo "<td><form action='prescript_view.php' method='POST'><button type='submit' class='btn btn-warning'><input name='id' value='$i' style='visibility:hidden; width:0;'>ViewDetail</button></form></td>"; //View details
-            echo "</tr>"; 
+        $idx = 0;
+        for($i = 0; $i < count($res); $i++){
+        $row = $res[$i];
+        $aid = $row['aid'];
+        $mname = $row['medicine_name'];
+        $dosage = $row['dosage'];
+        $quantity = $row['quantity'];
+        $tpd = $row['tpd'];
+        $tpu = $row['tpu'];
+        $note = $row['note'];
+        $date = $row['date'];
+        if ($i+1 < count($res)){
+            if($res[$i+1]['aid'] == $aid){
+                $mname .= ", ".$res[$i+1]['medicine_name'];
+                $i++;
+            }
         }
+
+        $infoOfPatientAndDoctor = $dbManager->getPatientAndDoctorInfo($aid);
+        $dname = $infoOfPatientAndDoctor[0]['dname'];
+        
+        ++$idx;
+        echo "<tr>"; 
+        echo "<td>$idx</td>";
+        echo "<td>$dname</td>"; //Doctor Name
+        echo "<td>$mname</td>"; //Medicine Name
+        echo "<td>$date</td>"; //Given time
+        echo "<td><form action='prescript_view.php' method='POST'><button type='submit' class='btn btn-warning'><input name='presc_id' value='$aid' style='visibility:hidden; width:0;'>ViewDetail</button></form></td>"; //View details
+        echo "</tr>"; 
+    }
     ?>
     </tbody>
 
