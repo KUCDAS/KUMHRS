@@ -11,6 +11,8 @@
 $is_doctor = false;
 $name = "Mahmut";
 include "partials/_p_header.php";
+
+
 ?>
 <body>
     <div class="container mt-5">
@@ -27,31 +29,32 @@ include "partials/_p_header.php";
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>New York</td>
-                    <td>Central Clinic</td>
-                    <td>Mount Sinai Hospital</td>
-                    <td>Dr. John Doe</td>
-                    <td>2024-05-20</td>
-                    <td>10:00 AM</td>
-                </tr>
-                <tr>
-                    <td>Los Angeles</td>
-                    <td>Downtown Health</td>
-                    <td>UCLA Medical Center</td>
-                    <td>Dr. Jane Smith</td>
-                    <td>2024-05-22</td>
-                    <td>02:00 PM</td>
-                </tr>
-                <tr>
-                    <td>Chicago</td>
-                    <td>Northside Clinic</td>
-                    <td>Northwestern Hospital</td>
-                    <td>Dr. Emily White</td>
-                    <td>2024-05-25</td>
-                    <td>11:30 AM</td>
-                </tr>
-                <!-- Add more rows as needed -->
+                <?php
+                require 'db/DatabaseManager.php';
+                session_start();
+                $dbManager = new DatabaseManager();
+                $appointments = $dbManager->getAppointments($_SESSION['rid']);
+
+
+                foreach($appointments as $row){
+                    $addressParts = explode(',', $row['address']);
+                    $city = trim(end($addressParts));
+                    $clinic = $row['dname'];
+                    $hospital = $row['hname'];
+                    $dName = $row['pname'];
+                    $date = $row['date'];
+                    $time = $row['time'];
+                    
+                    echo "<tr>";
+                    echo "<td>$city</td>";
+                    echo "<td>$clinic</td>";
+                    echo "<td>$hospital</td>";
+                    echo "<td>$dName</td>";
+                    echo "<td>$date</td>";
+                    echo "<td>$time</td>";
+                    echo "</tr>"; 
+                }
+                ?>
             </tbody>
         </table>
     </div>

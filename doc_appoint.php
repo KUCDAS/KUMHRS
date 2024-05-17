@@ -24,29 +24,30 @@ include "partials/_p_header.php";
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Central Clinic</td>
-                    <td>Mount Sinai Hospital</td>
-                    <td>John Doe</td>
-                    <td>2024-05-20</td>
-                    <td>10:00 AM</td>
-                </tr>
-                <tr>
-                    <td>Downtown Health</td>
-                    <td>UCLA Medical Center</td>
-                    <td>Jane Smith</td>
-                    <td>2024-05-22</td>
-                    <td>02:00 PM</td>
-                </tr>
-                <tr>
-                    <td>Northside Clinic</td>
-                    <td>Northwestern Hospital</td>
-                    <td>Emily White</td>
-                    <td>2024-05-25</td>
-                    <td>11:30 AM</td>
-                </tr>
-                <!-- Add more rows as needed -->
-            </tbody>
+            <?php
+                require 'db/DatabaseManager.php';
+                session_start();
+                $dbManager = new DatabaseManager();
+                $appointments = $dbManager->getDoctorAppointments($_SESSION['rid']);
+
+
+                foreach($appointments as $row){
+                    $clinic = $row['dname'];
+                    $hospital = $row['hname'];
+                    $dName = $row['pname'];
+                    $date = $row['date'];
+                    $time = $row['time'];
+                    
+                    echo "<tr>";
+                    echo "<td>$clinic</td>";
+                    echo "<td>$hospital</td>";
+                    echo "<td>$dName</td>";
+                    echo "<td>$date</td>";
+                    echo "<td>$time</td>";
+                    echo "</tr>"; 
+                }
+                ?>
+        </tbody>
         </table>
     </div>
 </body>
