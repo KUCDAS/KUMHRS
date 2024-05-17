@@ -5,10 +5,9 @@ $dbManager = new DatabaseManager();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (isset($_POST['email']) && isset($_POST['password'])){
+    if ($_POST['email'] != NULL && $_POST['password'] != NULL){
         $email = $_POST['email'];
         $password = $_POST['password'];
-
         //check the password by username with using getPassWord command
         $passwordDb = $dbManager -> getPassWord($email);
         $usersInfo = $dbManager -> getUsersInfo($email);
@@ -30,11 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     else{
-        header("Location: invalid_request.php");
+        header("Location: ../error_pages/login_error.php");
     }
 }
 else{
-    header("Location: invalid_request.php");
+    header("Location: ../invalid_request.php");
 }
 
 ?>
