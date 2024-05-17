@@ -28,6 +28,7 @@ if(isset($_GET['time'])){
 
     include "../db/DatabaseManager.php";
     $dbManager = new DatabaseManager();
+    $pid = $dbManager->getPatientId($pid);
     $dbManager->makeAppointment($pid, $formattedDate, $time.":00", $doctor);
 
     header("Location: ../success_pages/appointmentSuccess.php");

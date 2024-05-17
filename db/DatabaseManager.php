@@ -249,7 +249,7 @@ class DatabaseManager {
             return false;
         }
     
-        $stmt->bind_param('isss', $pid, $date, $time, $doctor); // Assuming $pid is an integer
+        $stmt->bind_param('ssss', $pid, $date, $time, $doctor); // Assuming $pid is an integer
         if (!$stmt->execute()) {
             // Handle executing errors
             echo "Execution error: " . $stmt->error;
@@ -258,6 +258,34 @@ class DatabaseManager {
     
         // Since it's an INSERT statement, no need to fetch rows, just return success or the number of affected rows
         return $stmt->affected_rows;
+    }
+
+    public function addPatient($rid){
+        $sql="INSERT INTO Patient(patient_id, rid) 
+        SELECT MAX(patient_id)+1, ?
+        FROM Patient";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('s', $rid);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function getPatientId($rid){
+        $sql="
+        SELECT patient_id FROM Patient WHERE rid = ?
+        ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('s', $rid);
+        $stmt->execute();
+        $result = $stmt -> get_result();
+        $stmt->close();
+        if ($result -> num_rows > 0){
+            $row = $result->fetch_assoc();
+            return $row['patient_id'];
+        }else{
+            $this->addPatient($rid);
+            $this->getPatientId($rid);
+        }
     }
     
     //Functions for Appointment Above
