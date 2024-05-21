@@ -19,13 +19,15 @@
             <h2 class="title">Sign In</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input name = "email" type="text" placeholder="Username" />
+              <input name = "email" type="text" placeholder="Username" value = "<?php (isset($_GET['email'])) ? $_GET['email'] : ""; ?>"/>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
               <input name = "password" type="password" placeholder="Password" />
             </div>
             <input type="submit" value="Login" class="btn solid" />
+            <p class="mt-3 ml-5">Don't have an account? <a href="signup.php">Sign up here</a></p>
+
           </form>
 
 

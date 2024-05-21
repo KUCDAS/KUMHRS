@@ -148,6 +148,18 @@ class DatabaseManager {
         return $results;
     }
 
+    public function getAllHospitals(){
+        $sql = "SELECT H.hname AS hospital_name FROM Hospital as H";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $hospitals = [];
+        while($row = $result -> fetch_assoc()){
+            array_push($hospitals, $row);
+        }
+        return $hospitals;
+    }
+
     public function getHospitals($clinic_name){
         $sql = "SELECT DISTINCT H.hname
         FROM Hospital H
@@ -328,7 +340,7 @@ class DatabaseManager {
     }
 
     public function getDoctorAppointments($rid){
-        $sql = "SELECT D.dname as dname, H.hname as hname, P.name as pname, A.adate as date, A.atime as time 
+        $sql = "SELECT D.dname as dname, H.hname as hname, P.name as pname, A.adate as date, A.atime as time, A.aid as aid
         FROM  Person as P, Patient as Pa, Appointment as A, Doctor as Do, Department as D, Hospital as H
         WHERE 
             Do.rid = ?
@@ -450,6 +462,278 @@ class DatabaseManager {
         
         return $results;        
     }
+
+    public function isPresccriptionWritten($aid){
+        $sql = "SELECT Pr.prescription_id AS id FROM Prescription Pr WHERE Pr.aid = ?";
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bind_param('s', $aid); // 's' indicates the type is a string
+
+        // Execute the query
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                array_push($results, $row);
+            }
+
+        } 
+        
+        if(count($results) > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    // public function checkMedicineExist($medicine_name,$dosage,$quantity,$tpd,$tpu,$note){
+    //     $sql = "SELECT mid FROM MedicineDetail WHERE medicine_name = ? AND dosage = ? AND quantity = ? AND tpd = ? AND tpu = ? AND note = ?";
+    //     $stmt = $this->conn->prepare($sql);
+    //     $stmt->bind_param('ssssss', $medicine_name,$dosage,$quantity,$tpd,$tpu,$note);
+    //     $stmt->execute();
+    //     $result = $stmt->get_result();
+    //     $results = [];
+    //     if ($result->num_rows > 0) {
+    //         // Output data of each row
+    //         while($row = $result->fetch_assoc()) {
+    //             array_push($results, $row);
+    //         }
+
+    //     } 
+    //     if(count($results) > 0){
+    //         return $results[0]['mid'];
+    //     }else{
+    //         return -1;
+    //     }
+    // }
+
+    public function insertMedicine($medicine_name,$dosage,$quantity,$tpd,$tpu,$note){
+        $sql = "INSERT INTO MedicineDetail (mid,medicine_name, dosage, quantity, tpd, tpu, note) 
+        SELECT MAX(mid)+1,?,?,?,?,?,?
+        FROM MedicineDetail";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ssssss', $medicine_name,$dosage,$quantity,$tpd,$tpu,$note);
+        $stmt->execute();
+        $stmt->close();
+
+        $sql = "INSERT INTO PrescriptionMedicine (prescription_id,mid)
+        SELECT MAX(prescription_id), MAX(mid)
+        FROM Prescription, MedicineDetail
+        ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $stmt->close();
+        // $sql = "SELECT MAX(mid)
+        // FROM MedicineDetail";
+        // $stmt = $this->conn->prepare($sql);
+        // $stmt->execute();
+        // $stmt->bind_result($maxMid);
+        // $stmt->close();
+        // return $maxMid;
+    }
+
+    public function insertPrescription($aid){
+        $sql = "INSERT INTO Prescription(prescription_id, aid)
+        SELECT MAX(prescription_id)+1, ?
+        FROM Prescription
+        ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('s', $aid);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function validUser($email,$insnumber){
+        $sql = "SELECT rid FROM Person WHERE email = ? OR insnumber = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ss', $email,$insnumber);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                array_push($results, $row);
+            }
+
+        } 
+        if(count($results) > 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    public function insertPerson($name,$email,$gender,$bdate,$insnumber,$address,$pnumber,$password){
+
+        if($this -> validUser($email,$insnumber)){
+        $sql = "INSERT INTO Person (rid, name, email,gender,bdate,insnumber,address,pnumber,password) 
+        SELECT MAX(rid)+1 ,?,?,?,?,?,?,?,? FROM Person";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ssssssss', $name,$email,$gender,$bdate,$insnumber,$address,$pnumber,$password);
+        $stmt->execute();
+        $stmt->close();
+
+        return $this -> getRid($email);
+        }else{
+            return $this -> getRid($email);
+        }
+    }
+
+    public function insertHospital($hname,$hadress){
+        $sql = "INSERT INTO Hospital (hospital_id,hname,haddress)
+        SELECT MAX(hospital_id)+1,?,? FROM Hospital";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ss', $hname,$hadress);
+        $stmt->execute();
+        $stmt->close();
+
+        //return last added hospital id
+        $sql = "SELECT MAX(hospital_id) FROM Hospital";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result(); 
+        $results = [];
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                array_push($results, $row);
+            }
+
+        }
+        return $results[0]['MAX(hospital_id)'];
+    }
+
+    public function insertDepartment($dname,$hid){
+        $sql = "INSERT INTO Department (department_id,dname,hospital_id)
+        SELECT MAX(department_id)+1,?,? FROM Department";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ss', $dname,$hid);
+        $stmt->execute();
+        $stmt->close();
+
+        $sql = "SELECT MAX(department_id) FROM Department";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                array_push($results, $row);
+            }
+
+        }
+
+        return $results[0]['MAX(department_id)'];
+    }
+
+    public function isHospitalExist($hname){
+        $sql = "SELECT hospital_id FROM Hospital WHERE hname = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('s', $hname);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                array_push($results, $row);
+            }
+
+        } 
+        if(count($results) > 0){
+            return $results[0]['hospital_id'];
+        }else{
+            return -1;
+        }
+    }
+
+
+    public function isDepartmentExist($dname,$hid){
+        $sql = "SELECT department_id FROM Department WHERE dname = ? AND hospital_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ss', $dname,$hid);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                array_push($results, $row);
+            }
+
+        }
+        if(count($results) > 0){
+            return $results[0]['department_id'];
+        }else{
+            return -1;
+        }
+
+    }
+
+    public function getRid($email){
+        $sql = "SELECT rid FROM Person WHERE email = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                array_push($results, $row);
+            }
+            return $results[0]['rid'];
+        }
+        return -1;
+        
+    }
+
+    public function insertDoctor($name,$email,$gender,$bdate,$insnumber,$address,$pnumber,$password,$hname,$hadress,$dname){
+        $rid = $this->insertPerson($name,$email,$gender,$bdate,$insnumber,$address,$pnumber,$password);
+
+        $hid = $this -> isHospitalExist($hname);
+        if($hid == -1){
+            $hid = $this -> insertHospital($hname,$hadress);
+        }
+
+        $did = $this -> isDepartmentExist($dname,$hid);
+        if($did == -1){
+            $did = $this ->  insertDepartment($dname,$hid);
+        }
+
+        echo "\nrid:";
+        echo $rid;
+        echo "\nhid:";
+        echo $did;
+
+        $sql = "INSERT INTO Doctor (doctor_id,rid,department_id) 
+        SELECT MAX(doctor_id)+1,?,? FROM Doctor";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ss', $rid,$did);
+        $stmt->execute();
+        $stmt->close();
+
+        $sql =  "SELECT MAX(doctor_id) FROM Doctor";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $results = [];
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                array_push($results, $row);
+            }
+        }
+        return $results[0]['MAX(doctor_id)'];
+    }
+
+    
+
 
     
 }
