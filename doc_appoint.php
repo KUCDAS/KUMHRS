@@ -21,6 +21,7 @@ include "partials/_p_header.php";
                     <th scope="col">Patient Name</th>
                     <th scope="col">Appointment Date</th>
                     <th scope="col">Time</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,7 @@ include "partials/_p_header.php";
                 session_start();
                 $dbManager = new DatabaseManager();
                 $appointments = $dbManager->getDoctorAppointments($_SESSION['rid']);
+                
 
 
                 foreach($appointments as $row){
@@ -37,6 +39,8 @@ include "partials/_p_header.php";
                     $dName = $row['pname'];
                     $date = $row['date'];
                     $time = $row['time'];
+                    $aid = $row['aid'];
+                    $is_prescWriten = $dbManager->isPresccriptionWritten($aid);
                     
                     echo "<tr>";
                     echo "<td>$clinic</td>";
@@ -44,6 +48,12 @@ include "partials/_p_header.php";
                     echo "<td>$dName</td>";
                     echo "<td>$date</td>";
                     echo "<td>$time</td>";
+                    if (!$is_prescWriten){
+                        echo "<td><a href = 'writePresc.php?aid=$aid' class='btn btn-warning'>Write Prescription</a></td>";
+                    }
+                    else{
+                        echo "<td><form action='prescript_view.php' method='POST'><button type='submit' class='btn btn-success'><input name='presc_id' value='$aid' style='visibility:hidden; width:0;'>View Prescription</button></form></td>"; //View details
+                    }
                     echo "</tr>"; 
                 }
                 ?>

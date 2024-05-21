@@ -33,7 +33,8 @@ include "partials/_p_header.php";
                 require 'db/DatabaseManager.php';
                 session_start();
                 $dbManager = new DatabaseManager();
-                $appointments = $dbManager->getAppointments($_SESSION['rid']);
+                $patientId = $dbManager->getPatientId($_SESSION['rid']);
+                $appointments = $dbManager->getAppointments($patientId);
 
 
                 foreach($appointments as $row){

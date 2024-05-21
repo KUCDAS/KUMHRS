@@ -153,7 +153,9 @@
                                 <h4>Bana Olan Randevular</h4>
                             </a>
                             <?php endif; ?>
-
+                            <a href="statistics.php" class="btn btn-warning">
+                                <h4>Statistics</h4>
+                            </a>
                             <a href="end_sessionController.php" class="btn btn-danger">
                                 <h4>Exit</h4>
                             </a>
