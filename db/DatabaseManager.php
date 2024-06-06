@@ -879,6 +879,79 @@ class DatabaseManager {
         return $results[0]['MAX(doctor_id)'];
     }
 
+    public function getNumberOfBeingSick($rid, $months){
+        if ($months == 0){
+            $sql = "SELECT COUNT(*) AS num
+            FROM Appointment
+            JOIN Patient ON Appointment.patient_id = Patient.patient_id
+            WHERE Patient.rid = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt -> bind_param("s", $rid);
+        } else{
+            $sql = "SELECT COUNT(*) AS num
+            FROM Appointment
+            JOIN Patient ON Appointment.patient_id = Patient.patient_id
+            WHERE Patient.rid = ?
+            AND Appointment.adate >= DATE_SUB(CURRENT_DATE, INTERVAL ? MONTH)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt -> bind_param("ss", $rid, $months);
+        }
+        $stmt -> execute();
+        $stmt -> bind_result($num);
+        $result = $stmt->fetch();
+
+        if ($result) {
+            // Close the statement
+            $stmt->close();
+            return $num; // Return the name fetched from database
+        } else {
+            // Close the statement
+            $stmt->close();
+            return null; // Return null if no result found
+        }
+    }
+
+    public function getNumberOfTakenPills($rid, $months){
+        if($months == 0){
+            $sql = "SELECT SUM(MedicineDetail.quantity) AS TotalPillsTaken
+            FROM MedicineDetail
+            JOIN PrescriptionMedicine ON MedicineDetail.mid = PrescriptionMedicine.mid
+            JOIN Prescription ON PrescriptionMedicine.prescription_id = Prescription.prescription_id
+            JOIN Appointment ON Prescription.aid = Appointment.aid
+            JOIN Patient ON Appointment.patient_id = Patient.patient_id
+            WHERE Patient.rid = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param("s", $rid);
+        }
+        else{
+            $sql = "SELECT SUM(MedicineDetail.quantity) AS TotalPillsTaken
+            FROM MedicineDetail
+            JOIN PrescriptionMedicine ON MedicineDetail.mid = PrescriptionMedicine.mid
+            JOIN Prescription ON PrescriptionMedicine.prescription_id = Prescription.prescription_id
+            JOIN Appointment ON Prescription.aid = Appointment.aid
+            JOIN Patient ON Appointment.patient_id = Patient.patient_id
+            WHERE Patient.rid = ? 
+              AND Appointment.adate >= DATE_SUB(CURRENT_DATE, INTERVAL ? MONTH)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param("ss", $rid, $months);
+        }
+
+        $stmt -> execute();
+        $stmt -> bind_result($num);
+        $result = $stmt->fetch();
+
+        if ($result) {
+            // Close the statement
+            $stmt->close();
+            return $num; // Return the name fetched from database
+        } else {
+            // Close the statement
+            $stmt->close();
+            return null; // Return null if no result found
+        }
+
+    }
+
     
 
 

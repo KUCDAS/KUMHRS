@@ -29,6 +29,7 @@ include "partials/_p_header.php";
                 require 'db/DatabaseManager.php';
                 session_start();
                 $dbManager = new DatabaseManager();
+                $drname = $_SESSION['name'];
                 $appointments = $dbManager->getDoctorAppointments($_SESSION['rid']);
                 
 
@@ -49,7 +50,7 @@ include "partials/_p_header.php";
                     echo "<td>$date</td>";
                     echo "<td>$time</td>";
                     if (!$is_prescWriten){
-                        echo "<td><a href = 'writePresc.php?aid=$aid' class='btn btn-warning'>Write Prescription</a></td>";
+                        echo "<td><a href = 'writePresc.php?aid=$aid&doctor=$drname&patient=$dName' class='btn btn-warning'>Write Prescription</a></td>";
                     }
                     else{
                         echo "<td><form action='prescript_view.php' method='POST'><button type='submit' class='btn btn-success'><input name='presc_id' value='$aid' style='visibility:hidden; width:0;'>View Prescription</button></form></td>"; //View details
