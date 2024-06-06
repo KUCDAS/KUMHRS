@@ -33,13 +33,12 @@
 <div class="container mt-5">
     <h2>Prescription Form</h2>
     <form action="process/submitPrescriptionProcess.php" method="post">
+        <hr>
         <div class="form-group">
-            <label for="doctorName">Doctor's Name:</label>
-            <input type="text" class="form-control" id="doctorName" name="doctor_name" required>
+            <h3>Doctor: <?=$_GET['doctor']?></h2>
         </div>
         <div class="form-group">
-            <label for="patientName">Patient's Name:</label>
-            <input type="text" class="form-control" id="patientName" name="patient_name" required>
+            <h3>Patient: <?=$_GET['patient']?></h2>
         </div>
         <input type="hidden" name = "aid" value = "<?=$_GET['aid']?>">
         <table class="table" id="medicationTable">

@@ -13,7 +13,7 @@
             <h4 class="alert-heading">Login Unsuccessful</h4>
             <p>The username or password you entered is not correct. Please try again.</p>
         </div>
-        <a href="../index.html" class="btn btn-secondary float-end">Try Again</a>
+        <a href="../index.php" class="btn btn-secondary float-end">Try Again</a>
     </div>
 </body>
 </html>
