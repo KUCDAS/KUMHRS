@@ -4,6 +4,15 @@
 
 KUCDAS is a medical appointment website developed as a group project for COMP306 to enhance Database Management skills. This platform facilitates the management of medical appointments, prescriptions, and user statistics in a streamlined and efficient manner.
 
+## Group Members
+
+- **Mahmut İbrahim Deniz**
+- **İlhan Akbudak**
+- **Emirhan Çakır**
+- **Samet Biber**
+- **Hulki Çıray**
+- **Tolga Kaan Kantarcı**
+
 ## Note
 
 - **Educational Purpose:** This website has been developed solely for educational purposes within the framework of a COMP306 course project and is not intended for commercial use.
