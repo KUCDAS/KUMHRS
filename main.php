@@ -134,23 +134,23 @@
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right" style=" padding: 16px;">
                             <a href="AppointmentPages/appointment.php" class="btn btn-info">
-                                <h4>Randevu Al</h4>
+                                <h4>Make Appointment</h4>
                             </a>
 
                             <a href="pat_appoint.php" class="btn btn-danger p-4">
-                                <h4>Randevu Görüntüle</h4>
+                                <h4>My Appointments</h4>
                             </a>
                             <a href="pat_presc.php" class="btn btn-danger">
-                                <h4>Reçetelerim</h4>
+                                <h4>My Prescriptions</h4>
                             </a>
 
                             <?php if($_SESSION['is_doctor']):?>
                             <a href="doc_presc.php" class="btn btn-success">
-                                <h4>Yazdığım Reçeteler</h4>
+                                <h4>Prescriptions I Gave</h4>
                             </a>
 
                             <a href="doc_appoint.php" class="btn btn-success">
-                                <h4>Bana Olan Randevular</h4>
+                                <h4>Appointments to Me</h4>
                             </a>
                             <?php endif; ?>
                             <a href="statistics.php" class="btn btn-warning">
