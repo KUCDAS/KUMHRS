@@ -36,9 +36,11 @@
         <hr>
         <div class="form-group">
             <h3>Doctor: <?=$_GET['doctor']?></h2>
+            <input type="text" id="doctorName" name="doctor_name" value="<?=$_GET['doctor']?>" style="visibility: hidden;">
         </div>
         <div class="form-group">
             <h3>Patient: <?=$_GET['patient']?></h2>
+            <input type="text" id="patientName" name="patient_name" value="<?=$_GET['patient']?>" style="visibility: hidden;">
         </div>
         <input type="hidden" name = "aid" value = "<?=$_GET['aid']?>">
         <table class="table" id="medicationTable">
