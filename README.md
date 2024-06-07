@@ -19,6 +19,7 @@ KUCDAS is a medical appointment website developed as a group project for COMP306
 - **UI Design:** The main page UI (main.php) is inspired by and closely resembles the design found on [MHRS www.mhrs.gov.tr](http://www.mhrs.gov.tr). All other features, including additional UI elements and database queries, have been independently developed by our team.
 - **Imaginary Data:** All names of patients and doctors are fictitiously generated. Any resemblance to real persons, living or dead, is purely coincidental and unintentional.
 - **Hospital Names:** The names of hospitals used within this project are either entirely fictional or are actual institutions, mentioned purely for the purposes of context within the educational scope of the project.
+- **The Current SQL FIle is the db/ foler**
 
 
 ## Features
